@@ -34,7 +34,6 @@ function bindForm(){
    const data=await res.json().catch(()=>({}));
    if(!res.ok)throw Error(data.error||"We could not submit your application. Please try again.");
    form.reset();setMessage(form,"Your application has been received. The ZiBra team will review it and contact you about next steps.");
-   if(consent())track("application_submitted",{section:"pilot-application"});
    form.dispatchEvent(new CustomEvent("zibra:application-submitted",{detail:data.application}));
   }catch(err){setMessage(form,err.message||"Submission failed. Please try again.",true);}
   finally{if(button)button.disabled=false;}
